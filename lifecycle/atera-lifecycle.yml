@@ -1,0 +1,96 @@
+generated: '2026-08-06'
+method: searched
+source: https://status.atera.com
+docs: https://support.atera.com/hc/en-us/sections/201896227-Release-Notes
+
+versioning:
+  scheme: uri-path
+  current: v3
+  base_url: https://app.atera.com/api/v3
+  policy_url: null
+  policy_published: false
+  note: >-
+    v3 is the only version publicly referenced by Atera's documentation and sample
+    scripts. No version-support window, no sunset schedule and no migration guide are
+    published.
+
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: not documented
+  deprecation_header: not documented
+  practice: >-
+    Deprecations are announced as one-off support articles and release-note entries
+    rather than under a stated policy. No Deprecation pointer is wired into apis.yml
+    because there is no deprecation policy page to point at.
+  notices:
+  - title: Deprecation of support for TLS 1.0 and TLS 1.1
+    url: https://support.atera.com/hc/en-us/articles/4404634718610-Deprecation-of-support-for-TLS-1-0-and-TLS-1-1
+    scope: transport
+  - title: Basic Authentication Deprecation by Microsoft
+    url: https://support.atera.com/hc/en-us/articles/5550589273500-Basic-Authentication-Deprecation-by-Microsoft
+    scope: upstream integration (Microsoft), not Atera's own API
+  deprecated_operations: []
+  note_on_operations: >-
+    Cannot be derived — the OpenAPI is not published, so no operation-level `deprecated`
+    flags are observable.
+
+status_page:
+  url: https://status.atera.com
+  platform: Atlassian Statuspage
+  machine_readable: true
+  api:
+  - https://status.atera.com/api/v2/summary.json
+  - https://status.atera.com/api/v2/components.json
+  - https://status.atera.com/api/v2/status.json
+  api_covered: true
+  api_component: API Service
+  components:
+  - Main Dashboard
+  - RMM Services
+  - Helpdesk
+  - PSA Services
+  - Agents Health
+  - Reports
+  - Admin Console GUI
+  - System Alerts
+  - Billing
+  - System Schedulers
+  - End User Customer Portal
+  - Remote Control
+  - Email Security Services
+  - API Service
+  - Community Site
+  - Academy
+  - Robin
+  - AI Copilot
+  note: >-
+    The API is a first-class status component ("API Service"), and the Statuspage JSON
+    API is anonymously readable, so an agent can check API health without credentials.
+
+sla:
+  url: null
+  uptime_target: null
+  published: false
+  note: >-
+    No public uptime SLA or uptime-credit commitment for the API was found. Atera does
+    document configuring SLAs for its own customers' helpdesk tickets, which is a
+    product feature, not an API service-level commitment.
+
+support:
+  api_support_policy: >-
+    "Please be advised that Atera support does not offer assistance for creating or
+    troubleshooting API connections." — Atera API FAQ. Developers are directed to the
+    community and to their own tooling.
+  community: https://community.atera.com/
+  help_center: https://support.atera.com/hc/en-us
+
+access_lifecycle:
+  trial: API access is disabled during the free trial.
+  paid: Included in every paid subscription at no additional cost.
+  token_expiry: Every API token carries an expiration date, maximum one year.
+
+x-evidence:
+- {url: 'https://status.atera.com', http_status: 200, fetched: '2026-08-06'}
+- {url: 'https://status.atera.com/api/v2/summary.json', http_status: 200, fetched: '2026-08-06'}
+- {url: 'https://support.atera.com/hc/en-us/sections/201896227-Release-Notes', http_status: 200, fetched: '2026-08-06', note: 'read via the anonymous Zendesk Help Center API; 94 articles in the section'}

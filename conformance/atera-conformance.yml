@@ -1,0 +1,93 @@
+generated: '2026-08-06'
+method: searched
+source: https://support.atera.com/hc/en-us/articles/11071761826844-API-FAQ
+notes: >-
+  Standards conformance for the Atera API v3, asserted only where a first-party page or
+  a live probe supports it. No OpenAPI is publicly available, so nothing here is derived
+  from a specification.
+
+standards:
+- id: rest
+  conforms: true
+  evidence: >-
+    Atera documents GET/POST/PUT/DELETE against resource collections under
+    https://app.atera.com/api/v3 and states that "a strong grasp of HTTP/HTTPS and
+    RESTful design principles is required" (API FAQ).
+- id: openapi-3.0
+  conforms: partial
+  evidence: >-
+    "Atera employs OpenAPI 3.0 to drive its API." — Atera API FAQ. The document itself is
+    served only to authenticated tenants at https://app.atera.com/apidocs (401 anonymous)
+    and is not published at any public URL, so the claim cannot be verified and the spec
+    cannot be consumed by an integrator or agent.
+- id: oauth2
+  conforms: false
+  evidence: 'No authorization server; single account API token in the X-API-KEY header.'
+- id: oidc
+  conforms: false
+  evidence: '/.well-known/openid-configuration not served (see well-known/).'
+- id: rfc8414-oauth-metadata
+  conforms: false
+  evidence: '/.well-known/oauth-authorization-server not served.'
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: '/.well-known/security.txt returns 404 on app.atera.com and 403 on www.atera.com.'
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'No problem+json media type; observed 401 responses carry an empty body.'
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset/Deprecation header support documented.
+- id: rfc9615-api-catalog
+  conforms: false
+  evidence: '/.well-known/api-catalog not served.'
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    Webhooks exist (three ticket triggers) but no AsyncAPI document and no payload schema
+    are published. See asyncapi/atera-webhooks.yml.
+- id: idempotency-key
+  conforms: false
+  evidence: No idempotency key or safe-retry contract documented.
+- id: pagination
+  conforms: partial
+  evidence: >-
+    Pagination exists and is referenced in the export docs; the parameter and envelope
+    names are only inside the token-gated reference.
+- id: tls-1.2-minimum
+  conforms: true
+  evidence: >-
+    TLS 1.0/1.1 support deprecated
+    (https://support.atera.com/hc/en-us/articles/4404634718610); live probe of
+    app.atera.com negotiated TLSv1.3 on 2026-08-06.
+- id: https-only
+  conforms: true
+  evidence: '"Atera supports API requests over HTTPS only." — Using the Atera API.'
+- id: hsts
+  conforms: true
+  evidence: 'app.atera.com returns Strict-Transport-Security max-age=31536000 (probed 2026-08-06).'
+- id: dnssec
+  conforms: true
+  evidence: 'DNSKEY present for atera.com (probed 2026-08-06).'
+- id: dmarc
+  conforms: true
+  evidence: 'DMARC policy p=reject on atera.com (probed 2026-08-06).'
+- id: caa
+  conforms: false
+  evidence: 'No CAA records on atera.com (probed 2026-08-06).'
+- id: mcp
+  conforms: consumer-only
+  evidence: >-
+    Atera's AI Center installs MCP integrations from a catalog and registers custom MCP
+    servers so Robin and AI Copilot can call out. Atera is an MCP HOST/CLIENT; it
+    publishes no MCP server of its own, so no MCPServer pointer is wired.
+    https://support.atera.com/hc/en-us/articles/24164010860700-AI-Center-Model-Context-Protocol-MCP-integrations
+- id: a2a
+  conforms: false
+  evidence: 'No agent card at /.well-known/agent-card.json or /.well-known/agent.json on any host.'
+
+compliance_program:
+  published: true
+  trust_center: https://trust.atera.com/
+  verified_certifications: [SOC 2 Type 2]
+  see: security/atera-trust-center.yml

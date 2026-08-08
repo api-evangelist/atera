@@ -1,0 +1,55 @@
+generated: '2026-08-06'
+method: probed
+source: live probes 2026-08-06
+result: none-found
+notes: >-
+  No /.well-known/ document could be retrieved from any Atera host. app.atera.com is an
+  ASP.NET application behind Cloudflare that answers unmatched paths with either a 404
+  HTML page or a 401 with an empty body, and www.atera.com answers every automated
+  request — including /robots.txt and /llms.txt — with a Cloudflare 403 challenge page.
+  No WellKnown or SecurityTxt pointer is wired into apis.yml because nothing was found.
+  Every 200 recorded below is a soft-200 with a zero-byte body, which is NOT evidence of
+  a document; it is the app's catch-all and is marked as such.
+
+hosts:
+- host: https://app.atera.com
+  documents:
+  - {path: /.well-known/security.txt, status: 404, found: false}
+  - {path: /.well-known/openid-configuration, status: 401, found: false, note: empty body, catch-all}
+  - {path: /.well-known/oauth-authorization-server, status: 401, found: false, note: empty body, catch-all}
+  - {path: /.well-known/api-catalog, status: 401, found: false, note: empty body, catch-all}
+  - {path: /.well-known/ai-plugin.json, status: 404, found: false}
+  - {path: /.well-known/agent-card.json, status: 404, found: false}
+  - {path: /.well-known/agent.json, status: 404, found: false}
+  - {path: /llms.txt, status: 404, found: false}
+- host: https://www.atera.com
+  documents:
+  - {path: /.well-known/security.txt, status: 403, found: false, note: Cloudflare bot challenge}
+  - {path: /.well-known/agent-card.json, status: 403, found: false, note: Cloudflare bot challenge}
+  - {path: /robots.txt, status: 403, found: false, note: Cloudflare bot challenge}
+  - {path: /llms.txt, status: 403, found: false, note: Cloudflare bot challenge}
+
+contract_discovery:
+  openapi_probed:
+  - {url: 'https://app.atera.com/api/v3/swagger.json', status: 404}
+  - {url: 'https://app.atera.com/api/v3/openapi.json', status: 401, note: empty body}
+  - {url: 'https://app.atera.com/swagger/v3/swagger.json', status: 404}
+  - {url: 'https://app.atera.com/swagger/v1/swagger.json', status: 404}
+  - {url: 'https://app.atera.com/swagger/index.html', status: 404}
+  - {url: 'https://app.atera.com/swagger/docs/v1', status: 200, bytes: 0, found: false, note: soft-200, zero-byte body, not a spec}
+  - {url: 'https://app.atera.com/swagger/docs/v2', status: 200, bytes: 0, found: false, note: soft-200, zero-byte body, not a spec}
+  - {url: 'https://app.atera.com/swagger/docs/v3', status: 200, bytes: 0, found: false, note: soft-200, zero-byte body, not a spec}
+  - {url: 'https://app.atera.com/swagger/ui/index', status: 200, bytes: 0, found: false, note: soft-200, zero-byte body}
+  - {url: 'https://app.atera.com/openapi.json', status: 404}
+  - {url: 'https://app.atera.com/api-docs', status: 401}
+  - {url: 'https://app.atera.com/apidocs', status: 401, bytes: 0, note: 'the documented API reference; token-gated'}
+  - {url: 'https://developers.atera.com/', status: 0, note: DNS does not resolve}
+  - {url: 'https://api.atera.com', status: 403, note: resolves to the Cloudflare-challenged marketing edge}
+  graphql: none advertised
+  mcp_server: none published by Atera
+  a2a_agent_card: none found
+  conclusion: >-
+    Atera states in its own API FAQ that "Atera employs OpenAPI 3.0 to drive its API",
+    but the document is served only to an authenticated tenant through
+    https://app.atera.com/apidocs. There is no anonymously reachable OpenAPI, Swagger,
+    GraphQL SDL, AsyncAPI, or Postman collection.

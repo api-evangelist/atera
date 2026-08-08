@@ -1,0 +1,73 @@
+generated: '2026-08-06'
+method: searched
+source: registry searches (npm, PyPI, PowerShell Gallery, NuGet) + Atera support docs
+official_sdks: 0
+notes: >-
+  Atera publishes NO first-party client libraries in any package registry. Every client
+  below is third-party. No SDKs pointer is wired into apis.yml, because the sdk_count
+  check must reflect first-party SDKs and Atera ships none. Notably, Atera's own support
+  documentation instructs readers to install the community PowerShell module PSAtera —
+  a third-party package — rather than anything Atera maintains.
+
+packages: []
+
+third_party:
+- language: powershell
+  registry: PowerShell Gallery
+  name: PSAtera
+  version_seen: 1.8.0
+  author: Dave Long
+  url: https://www.powershellgallery.com/packages/PSAtera
+  repository: https://github.com/davejlong/PSAtera
+  install: Install-Module -Name PSAtera
+  official: false
+  referenced_by_provider: true
+  provider_reference: https://support.atera.com/hc/en-us/articles/360019156800-Get-the-value-for-custom-fields-in-scripts
+  note: >-
+    "You'll need to install the PSAtera module in Powershell before using this script."
+    — Atera support article. Atera routes its own scripting guidance through a community
+    module it does not maintain.
+- language: javascript
+  registry: npm
+  name: n8n-nodes-atera
+  url: https://www.npmjs.com/package/n8n-nodes-atera
+  official: false
+  note: n8n community node for Atera API v3.
+- language: javascript
+  registry: npm
+  name: '@zackrobertstech/n8n-nodes-atera'
+  url: https://www.npmjs.com/package/@zackrobertstech/n8n-nodes-atera
+  official: false
+  note: 'n8n community node: agents, tickets, contacts, customers, alerts, billing.'
+- language: python
+  registry: github
+  name: atera-client
+  url: https://github.com/InoGo-Software/atera-client
+  official: false
+  note: Python client generated from a Swagger definition by a third party (SwaggerHub).
+
+registries_probed:
+- {registry: npm, query: atera, first_party_hits: 0, checked: '2026-08-06'}
+- {registry: pypi, query: atera, http_status: 404, checked: '2026-08-06'}
+- {registry: pypi, query: atera-api, http_status: 404, checked: '2026-08-06'}
+- {registry: powershell-gallery, query: PSAtera, http_status: 200, first_party: false, checked: '2026-08-06'}
+- {registry: github, query: 'org:atera', http_status: 404, note: 'no github.com/atera organization exists', checked: '2026-08-06'}
+
+github:
+  official_org: null
+  note: >-
+    github.com/atera returns 404. A "Atera-Networks-LTD" account exists with a single
+    unrelated PowerShell repository, no organization name, no linked website and no
+    Atera branding — not confident enough to record as the company's official org, so
+    no GitHubOrganization pointer is wired.
+  candidate_checked: https://github.com/Atera-Networks-LTD
+
+cli:
+  first_party: false
+  note: Atera ships no first-party CLI.
+
+x-evidence:
+- {url: 'https://registry.npmjs.org/-/v1/search?text=atera', http_status: 200, fetched: '2026-08-06'}
+- {url: 'https://pypi.org/pypi/atera/json', http_status: 404, fetched: '2026-08-06'}
+- {url: 'https://api.github.com/orgs/atera', http_status: 404, fetched: '2026-08-06'}
+- {url: 'https://www.powershellgallery.com/api/v2/FindPackagesById()?id=%27PSAtera%27', http_status: 200, fetched: '2026-08-06'}

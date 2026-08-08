@@ -1,0 +1,92 @@
+generated: '2026-08-06'
+method: searched
+source: https://support.atera.com/hc/en-us/articles/25381421604124-Release-Notes-2026
+docs: https://support.atera.com/hc/en-us/sections/201896227-Release-Notes
+
+changelog:
+  url: https://support.atera.com/hc/en-us/sections/201896227-Release-Notes
+  current_year_url: https://support.atera.com/hc/en-us/articles/25381421604124-Release-Notes-2026
+  format: platform release notes, one article per year, grouped by month
+  dated: true
+  api_specific: false
+  history_depth: 'articles back to 2016; 94 articles in the Release Notes section'
+  machine_readable: >-
+    Only via the anonymous Zendesk Help Center API
+    (https://support.atera.com/api/v2/help_center/en-us/sections/201896227/articles.json).
+    There is no RSS/Atom feed, no per-API changelog and no breaking-change register.
+  scheme: none
+  current_version: v3
+  last_updated: '2026-07-05'
+
+entries:
+- date: '2026-06'
+  version: null
+  breaking: false
+  api_relevant: true
+  highlights:
+  - 'API token support: multiple API tokens with configurable expiration dates, IP
+    restrictions and permission scopes.'
+  - Admins can require MFA for protected/irreversible actions.
+  - New-device-detected email notifications with an unauthorized-access report action.
+  - '"Beginner" view-only preset added to technician permissions.'
+  - IT Autopilot renamed to Robin; Robin gains a Salesforce integration; AI Center
+    access can be granted to non-admins via roles and permissions.
+- date: '2026-05'
+  version: null
+  breaking: false
+  api_relevant: false
+  highlights:
+  - AI Center ticket-flow breakdown for Robin.
+  - Automatic child-ticket creation from ticket automation rules.
+  - Windows OS patch release dates surfaced on the Patch Management page.
+  - Global search across custom fields, assets, KB articles and ticket comments.
+  - Network Discovery credential requests, workgroup agent deployment, dedicated SNMP
+    scan type; Copilot-generated SNMP OIDs.
+- date: '2026-04'
+  version: null
+  breaking: false
+  api_relevant: true
+  highlights:
+  - 'Cloud actions can now call Atera ticketing APIs, letting AI Copilot and Robin
+    escalate, resolve and update tickets end to end.'
+  - Lenovo warranty/purchase sync for assets.
+  - Multiple email addresses can be bound to a single user/contact.
+  - Ticket form templates segmentable by site/customer; folder-level technician access
+    restrictions.
+- date: '2026-03'
+  version: null
+  breaking: false
+  api_relevant: false
+  highlights:
+  - Multiple devices linkable to a single user/contact.
+  - Monitored device experience (HTTP, SNMP, TCP, Generic) rebuilt; AI-generated OIDs
+    from prompts or MIB files.
+  - Security audit logs expanded to cover authentication events, permission changes,
+    sensitive actions and access attempts, including remote connections, agent activity
+    and integrations.
+  - Robin multilingual support across 23 languages.
+- date: '2026-02'
+  version: null
+  breaking: false
+  api_relevant: true
+  highlights:
+  - '"Keyp it secure for APIce of mind": advanced API tokens with IP allowlisting and
+    granular permissions, initially available to new accounts only and rolling out
+    more broadly.'
+  - Microsoft Entra ID user sync per site.
+  - Passkey/biometric login.
+  - IT Autopilot playbooks, follow-up policy tuning, and expanded file-type analysis.
+
+deprecations_announced:
+- title: Deprecation of support for TLS 1.0 and TLS 1.1
+  url: https://support.atera.com/hc/en-us/articles/4404634718610-Deprecation-of-support-for-TLS-1-0-and-TLS-1-1
+
+gaps:
+- No API-specific changelog — API changes are mixed into platform release notes and
+  must be found by reading prose.
+- No version numbers, no breaking-change flags, no migration notes.
+- No RSS/Atom feed or webhook for release notes.
+
+x-evidence:
+- {url: 'https://support.atera.com/hc/en-us/articles/25381421604124-Release-Notes-2026', http_status: 200, fetched: '2026-08-06'}
+- {url: 'https://support.atera.com/api/v2/help_center/en-us/sections/201896227/articles.json', http_status: 200, fetched: '2026-08-06'}

@@ -1,0 +1,130 @@
+generated: '2026-08-06'
+method: searched
+source: https://support.atera.com/hc/en-us/articles/11071761826844-API-FAQ
+docs:
+- https://support.atera.com/hc/en-us/articles/219083397-Using-the-Atera-API
+- https://support.atera.com/hc/en-us/articles/11071761826844-API-FAQ
+- https://support.atera.com/hc/en-us/articles/23356740871836-Atera-Data-Export-FAQ
+notes: >-
+  Cross-cutting request/response semantics for the Atera API v3, captured from Atera's
+  public support documentation. The interactive reference (app.atera.com/apidocs) is
+  token-gated, so anything not stated in the public docs is recorded as unpublished
+  rather than guessed.
+
+transport:
+  scheme: https
+  https_only: true
+  evidence: '"Atera supports API requests over HTTPS only." — Using the Atera API'
+
+authentication:
+  style: api-key-header
+  header: X-API-KEY
+  see: authentication/atera-authentication.yml
+
+versioning:
+  scheme: uri-path
+  current: v3
+  base_url: https://app.atera.com/api/v3
+  header_versioning: false
+  date_versioning: false
+  policy_published: false
+  note: >-
+    The major version is carried in the path (/api/v3). Atera publishes no versioning
+    or version-support policy, and no v4 or deprecation timeline is announced.
+
+pagination:
+  supported: true
+  style: page-based
+  collection_field: Items
+  evidence: >-
+    Atera's own PowerShell sample reads .Items off the response of
+    GET /api/v3/agents/machine/{machineName}; the Data Export FAQ instructs callers to
+    "use pagination for large exports" of GET /api/v3/agents and GET /api/v3/devices.
+  parameters_published: false
+  note: >-
+    The query-parameter names and the page-metadata fields are only shown inside the
+    token-gated reference, so they are NOT recorded here. Third-party clients document
+    page/itemsInPage and a totalItemCount/totalPages/nextLink envelope; that is not a
+    first-party source and is deliberately not asserted as fact.
+
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    Atera documents no idempotency key, no request-replay protection and no safe-retry
+    contract for POST/PUT/DELETE. The API FAQ's guidance for large workloads is to
+    "batch your API requests, implement delays or throttling in your scripts, and
+    stagger the export process" — retry pacing, not idempotency. No Idempotency
+    pointer is emitted in apis.yml because there is no idempotency contract to point at.
+
+http_methods:
+  GET: retrieve records
+  POST: create records
+  PUT: update existing records
+  DELETE: remove records
+  PATCH: not documented
+  source: https://support.atera.com/hc/en-us/articles/11071761826844-API-FAQ
+
+media_type:
+  request: application/json
+  response: application/json
+  note: >-
+    The API FAQ's failure checklist tells callers to confirm "your request body follows
+    the proper JSON format"; responses are described as JSON throughout the export docs.
+
+rate_limits:
+  documented: false
+  headers_published: false
+  note: >-
+    Atera publishes no numeric rate limit, no 429 contract and no rate-limit response
+    headers. The API FAQ acknowledges limits exist ("you will need to work within the
+    API's existing limits") and declines to raise them for backup/export use cases,
+    but never states a number. A 700-requests-per-minute figure circulates in
+    third-party integration docs; it is not published by Atera and is not recorded
+    here as fact.
+
+error_envelope:
+  documented: false
+  rfc9457: false
+  note: >-
+    The public docs say only to "review the error message in the response body or
+    consult Atera's API documentation". No error code registry, problem+json media type,
+    or error schema is published outside the gated reference.
+  see: errors/atera-problem-types.yml
+
+request_tracing:
+  request_id_header: null
+  api_logs: false
+  evidence: >-
+    "Currently, Atera does not provide dedicated API logs within the platform. However,
+    you can use external logging tools or monitoring systems to track request and
+    response activity." — API FAQ
+
+extensibility:
+  custom_fields: true
+  note: >-
+    Custom fields defined in the tenant surface in API results and are readable/writable
+    through the CustomValues domain (GET/PUT).
+  custom_endpoints: false
+  evidence: >-
+    "No, customization of the API is not supported. The available API calls and requests
+    are limited to those listed." — API FAQ
+
+events:
+  webhooks: true
+  see: asyncapi/atera-webhooks.yml
+
+testing:
+  sandbox: false
+  note: >-
+    There is no test/live key separation and no sandbox tenant — API access is disabled
+    entirely during the free trial, so all calls run against production data. Atera
+    suggests using the built-in API interface or Postman to try calls, which still
+    execute against the live tenant.
+
+cross_links:
+  authentication: authentication/atera-authentication.yml
+  errors: errors/atera-problem-types.yml
+  lifecycle: lifecycle/atera-lifecycle.yml
+  changelog: changelog/atera-changelog.yml
+  webhooks: asyncapi/atera-webhooks.yml

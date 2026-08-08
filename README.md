@@ -42,5 +42,48 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Atera is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.hiive.com/securities/atera-stock
+Atera Networks Ltd. operates an all-in-one IT management platform combining remote
+monitoring and management (RMM), professional services automation (PSA), helpdesk and
+ticketing, patch management, network discovery, remote access, reporting and billing in
+a single per-technician subscription used by managed service providers and internal IT
+departments. Its AI layer adds Action AI, AI Copilot and Robin (IT Autopilot), plus an
+AI Center that installs Model Context Protocol (MCP) integrations from a catalog or
+registers custom MCP servers.
+
+## API surface
+
+| | |
+|---|---|
+| REST API | `https://app.atera.com/api/v3` |
+| Reference | <https://app.atera.com/apidocs> — **HTTP 401, empty body, to any unauthenticated client** |
+| Docs | <https://support.atera.com/hc/en-us/articles/219083397-Using-the-Atera-API> |
+| Auth | Account token in the `X-API-KEY` header; per-domain Read/Write/Delete permissions, IP allowlist, expiry (max 1 year) |
+| Data domains | Agents, Alerts, Billing, Contacts, Contracts, Customers, CustomValues, Departments, Devices, KnowledgeBase, Rates, Tickets |
+| Events | Webhooks on three ticket triggers only (Enterprise / Superpower tiers) |
+| Status | <https://status.atera.com> — "API Service" is a first-class component |
+| Trust | <https://trust.atera.com/> (Vanta) |
+
+## What this profile found
+
+Atera states in its own API FAQ that "Atera employs OpenAPI 3.0 to drive its API" — but
+that document is served only to an authenticated tenant. Contract discovery was run
+against every host (`app.atera.com`, `www.atera.com`, `api.atera.com`,
+`developers.atera.com`) across `/openapi.json`, `/swagger/docs/v{1,2,3}`,
+`/swagger/v1/swagger.json`, `/api-docs`, `/.well-known/*` and `/llms.txt`. Nothing
+anonymously readable came back: 404s, 401s with empty bodies, and three zero-byte
+soft-200s under `/swagger/` that are the ASP.NET catch-all, not a specification.
+
+The human documentation is good and public. The machine-readable contract is not
+published at all. That gap — a real OpenAPI 3.0 that exists but never leaves the tenant
+login — is the single highest-value thing Atera could change.
+
+Also recorded: no first-party SDK in any registry (Atera's own docs send readers to the
+community PowerShell module `PSAtera`), no idempotency contract, no documented rate
+limit or 429 semantics, empty-bodied 4xx responses, no error registry, no
+`/.well-known/` documents, no A2A agent card, and no MCP server (Atera consumes MCP, it
+does not publish one). `www.atera.com` answers every automated request — including
+`/robots.txt` — with a Cloudflare 403.
+
+Artifacts in this repo: `authentication/`, `conventions/`, `errors/`, `lifecycle/`,
+`changelog/`, `asyncapi/` (webhook catalog), `conformance/`, `packages/`, `security/`,
+`well-known/`, `llms/`.

@@ -1,0 +1,47 @@
+generated: '2026-08-06'
+method: probed
+probe: true
+url: https://trust.atera.com/
+platform: Vanta Trust Center (EU tenant — app.eu.vanta.com)
+verified: true
+machine_readable: false
+notes: >-
+  trust.atera.com resolves and returns HTTP 200 with <title>Atera Trust Center</title>
+  and a canonical link to itself, served as a Vanta-hosted single-page app. The page
+  content — the certification list, subprocessors and document requests — is rendered
+  client-side from a GraphQL endpoint that rejects unsigned requests
+  ("Missing `signature` or `signedAt`", HTTP 400), so the certification roster could
+  NOT be read anonymously. Only certifications with an independent first-party source
+  are recorded as verified below; the rest are deliberately left unasserted rather than
+  copied from secondhand summaries.
+
+certifications_verified:
+- name: SOC 2 Type 2
+  source: https://community.atera.com/discussion/335/were-officially-soc-2-type-2-certified
+  source_type: Atera admin announcement on Atera's own community
+  announced: '2024-01'
+
+certifications_unverified:
+  note: >-
+    Third-party summaries of trust.atera.com list ISO/IEC 27001, 27017, 27018, 27032 and
+    42001, HIPAA, GDPR and CCPA alongside SOC 2 Type 2. These could not be confirmed
+    against a page this pipeline could actually read, so they are recorded as unverified
+    rather than claimed.
+
+subprocessors:
+  url: https://trust.atera.com/subprocessors
+  status: 200
+  readable: false
+  note: SPA route; returns the same client-rendered shell.
+
+evidence:
+- {source: 'https://trust.atera.com/', http_status: 200, title: 'Atera Trust Center', vendor: vanta, fetched: '2026-08-06'}
+- {source: 'https://trust.atera.com/graphql', http_status: 400, error: 'Missing `signature` or `signedAt`', fetched: '2026-08-06'}
+- {source: 'https://community.atera.com/discussion/335/were-officially-soc-2-type-2-certified', http_status: 200, fetched: '2026-08-06'}
+
+gaps:
+- >-
+  The trust center is not machine-readable: no JSON, no feed, and a request-signed
+  GraphQL API. An agent evaluating Atera's compliance posture cannot read it.
+- No /.well-known/security.txt on any Atera host (see well-known/atera-well-known.yml).
+- No published vulnerability disclosure policy or bug bounty program was found.

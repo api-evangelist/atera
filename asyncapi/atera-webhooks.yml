@@ -1,0 +1,74 @@
+generated: '2026-08-06'
+method: searched
+source: https://support.atera.com/hc/en-us/articles/13688068743964-Webhooks
+spec_type: none
+asyncapi_published: false
+notes: >-
+  Atera ships a real outbound webhook surface but publishes no AsyncAPI document, no
+  event schema and no payload reference. This artifact captures the webhook catalog as
+  documented, and wires type Webhooks (not AsyncAPI) in apis.yml.
+
+webhooks:
+  docs: https://support.atera.com/hc/en-us/articles/13688068743964-Webhooks
+  admin_path: Admin > Data management > Webhooks
+  availability:
+    plans:
+    - Atera Enterprise (IT Departments)
+    - Atera Superpower (MSP)
+    - design partners
+    note: Not available on lower subscription tiers.
+  transport: HTTP POST to a subscriber-configured callback URL
+  configuration:
+    fields:
+    - name: Name
+      required: true
+    - name: Description
+      required: false
+    - name: Callback URL
+      required: true
+      description: The endpoint that will receive the notifications.
+  binding_model: >-
+    A webhook does nothing on its own. It must be selected as the "Trigger webhook"
+    action inside a ticket automation rule (Admin > Support and ticketing > Ticket
+    automation rules); both steps are required before any notification is sent. One
+    webhook can be assigned to multiple ticket automation rules.
+  triggers:
+  - id: new-ticket-created
+    name: New ticket created
+    domain: Tickets
+  - id: ticket-closed-resolved
+    name: Ticket closed/resolved
+    domain: Tickets
+  - id: ticket-status-changed
+    name: Ticket status changed
+    domain: Tickets
+  scope: >-
+    Ticketing only. There is no webhook trigger for the Agents, Alerts, Devices,
+    Billing, Contacts, Contracts, Customers, CustomValues, Departments, KnowledgeBase
+    or Rates domains — those are poll-only through the REST API.
+  operations:
+    test: Actions > Test sends a test notification to the endpoint (also available as
+      "Send test" at creation time).
+    deactivate: An Active toggle pauses notifications without deleting the webhook.
+    delete: Deleting the webhook disconnects all assigned trigger events.
+  payload_schema:
+    published: false
+    note: >-
+      No payload example, field list, JSON Schema or AsyncAPI channel definition is
+      published on the public webhook page.
+  security:
+    signing: not documented
+    secret: not documented
+    retries: not documented
+    ip_allowlist: not documented
+
+gaps:
+- No AsyncAPI document.
+- No webhook payload schema or example event.
+- No signature/HMAC verification scheme documented for receivers.
+- No delivery retry, ordering or replay guarantees documented.
+- Event coverage is limited to three ticket lifecycle triggers; the other eleven data
+  domains have no event surface.
+
+x-evidence:
+- {url: 'https://support.atera.com/hc/en-us/articles/13688068743964-Webhooks', http_status: 200, fetched: '2026-08-06'}

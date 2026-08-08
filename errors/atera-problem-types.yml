@@ -1,0 +1,51 @@
+generated: '2026-08-06'
+method: probed
+source: https://support.atera.com/hc/en-us/articles/11071761826844-API-FAQ
+format: none
+rfc9457: false
+status: no-public-error-reference
+notes: >-
+  Atera publishes no error-code registry, no error schema and no problem+json media
+  type on any public page. This file records the gap and the two error responses that
+  could be observed anonymously against the live host; it deliberately does NOT invent
+  a catalog, and no ErrorCatalog pointer is wired into apis.yml because there is no
+  published error contract to point at.
+
+published_reference: null
+docs_guidance: >-
+  "If a request fails, check the following: your API key is valid and included in the
+  header; the endpoint URL and method are correct; your request body follows the proper
+  JSON format. If issues persist, review the error message in the response body or
+  consult Atera's API documentation." — Atera API FAQ. The referenced API documentation
+  is the token-gated reference at https://app.atera.com/apidocs.
+
+observed:
+- status: 401
+  where: 'GET https://app.atera.com/api/v3/agents'
+  condition: no X-API-KEY header
+  body: empty
+  content_length: 0
+  www_authenticate: absent
+  fetched: '2026-08-06'
+- status: 401
+  where: 'GET https://app.atera.com/api/v3/agents'
+  condition: invalid X-API-KEY value
+  body: empty
+  content_length: 0
+  note: >-
+    A bad key and a missing key are indistinguishable to the caller — same status, same
+    empty body, no error object, no WWW-Authenticate challenge. An agent gets no
+    machine-readable signal about why it was rejected.
+  fetched: '2026-08-06'
+- status: 401
+  where: 'GET https://app.atera.com/apidocs'
+  condition: unauthenticated request for the API reference itself
+  body: empty
+  fetched: '2026-08-06'
+
+gaps:
+- No error code registry or error-response schema is published.
+- 4xx responses on the live API return an empty body, so there is nothing for a client
+  or agent to parse or branch on.
+- No RFC 9457 (application/problem+json) support.
+- No rate-limit / 429 contract is documented (see conventions/atera-conventions.yml).
