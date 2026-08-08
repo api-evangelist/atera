@@ -1,23 +1,136 @@
 aid: atera
 name: Atera
-description: 'Atera is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Atera Networks Ltd. operates an all-in-one IT management platform that
+  combines remote monitoring and management (RMM), professional services automation
+  (PSA), helpdesk and ticketing, patch management, network discovery, remote access
+  (Splashtop, AnyDesk, TeamViewer, ScreenConnect), reporting, and billing/invoicing
+  in a single per-technician subscription used by managed service providers and internal
+  IT departments. Its AI layer adds Action AI, AI Copilot, and Robin (IT Autopilot),
+  and an AI Center that lets administrators install Model Context Protocol (MCP) integrations
+  from a catalog or register custom MCP servers so Atera''s own agents can reach outside
+  systems. Atera is programmable through a versioned REST API at https://app.atera.com/api/v3
+  covering twelve data domains (agents, alerts, billing, contacts, contracts, customers,
+  custom values, departments, devices, knowledge base, rates, tickets) authenticated
+  with an X-API-KEY token, plus outbound webhooks bound to ticket automation rules.
+  Atera states its API is driven by OpenAPI 3.0, but the interactive reference at
+  https://app.atera.com/apidocs requires an account token before it will render and
+  no specification is published at a public URL.'
 url: https://raw.githubusercontent.com/api-evangelist/atera/refs/heads/main/apis.yml
+image: https://us.v-cdn.net/6037292/uploads/23NA1N62IAVU/atera-200x200.png
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
 tags:
-- Company
-apis: []
+- IT Management
+- RMM
+- PSA
+- Helpdesk
+- Ticketing
+- Patch Management
+- Remote Monitoring
+- Endpoint Management
+- MSP
+- Network Discovery
+- Alerts
+- Devices
+- Billing
+- Webhooks
+- AI
+apis:
+- name: Atera API v3
+  description: 'Atera''s REST API. Twelve data domains — Agents, Alerts, Billing,
+    Contacts, Contracts, Customers, CustomValues, Departments, Devices, KnowledgeBase,
+    Rates and Tickets — reachable over HTTPS only at https://app.atera.com/api/v3 and
+    authenticated with an account API token supplied in the X-API-KEY request header.
+    Tokens are created in Admin > Data management > API with an expiration date (one
+    year maximum), an optional IP allowlist, and either full access or custom per-domain
+    Read/Write/Delete permissions. API access is included in every paid subscription
+    but is disabled during the free trial.'
+  humanURL: https://app.atera.com/apidocs
+  baseURL: https://app.atera.com/api/v3
+  tags:
+  - IT Management
+  - RMM
+  - PSA
+  - Tickets
+  - Agents
+  - Devices
+  - Alerts
+  properties:
+  - type: Documentation
+    url: https://support.atera.com/hc/en-us/articles/219083397-Using-the-Atera-API
+  - type: APIReference
+    url: https://app.atera.com/apidocs
+  - type: Authentication
+    url: authentication/atera-authentication.yml
+  - type: Conventions
+    url: conventions/atera-conventions.yml
+  - type: Webhooks
+    url: asyncapi/atera-webhooks.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/atera-domain-security.yml
 - type: Website
-  url: https://www.hiive.com/securities/atera-stock
+  url: https://www.atera.com/
+- type: DeveloperPortal
+  url: https://app.atera.com/apidocs
+- type: Documentation
+  url: https://support.atera.com/hc/en-us/articles/219083397-Using-the-Atera-API
+- type: APIReference
+  url: https://app.atera.com/apidocs
+- type: GettingStarted
+  url: https://support.atera.com/hc/en-us/articles/360019612194-Getting-started
+- type: Support
+  url: https://support.atera.com/hc/en-us
+- type: HelpCenter
+  url: https://support.atera.com/hc/en-us
+- type: Community
+  url: https://community.atera.com/
+- type: Blog
+  url: https://www.atera.com/blog/
+- type: StatusPage
+  url: https://status.atera.com
+- type: ChangeLog
+  url: https://support.atera.com/hc/en-us/sections/201896227-Release-Notes
+- type: TrustCenter
+  url: https://trust.atera.com/
+- type: TrustCenter
+  url: security/atera-trust-center.yml
+- type: Compliance
+  url: https://trust.atera.com/
+- type: Pricing
+  url: https://www.atera.com/pricing/
+- type: SignUp
+  url: https://app.atera.com/
+- type: Webhooks
+  url: asyncapi/atera-webhooks.yml
+- type: Authentication
+  url: authentication/atera-authentication.yml
+- type: Conventions
+  url: conventions/atera-conventions.yml
+- type: Lifecycle
+  url: lifecycle/atera-lifecycle.yml
+- type: Conformance
+  url: conformance/atera-conformance.yml
+- type: Packages
+  url: packages/atera-packages.yml
+- type: LLMsTxt
+  url: llms/atera-llms.txt
+- type: TermsOfService
+  url: https://www.atera.com/terms-of-use/
+- type: PrivacyPolicy
+  url: https://www.atera.com/privacy/
+- type: ChangeLog
+  url: changelog/atera-changelog.yml
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 12
+  pass: local-v1
