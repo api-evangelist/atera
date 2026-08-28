@@ -16,6 +16,17 @@ description: 'Atera Networks Ltd. operates an all-in-one IT management platform 
   https://app.atera.com/apidocs requires an account token before it will render and
   no specification is published at a public URL.'
 url: https://raw.githubusercontent.com/api-evangelist/atera/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://us.v-cdn.net/6037292/uploads/23NA1N62IAVU/atera-200x200.png
 x-type: company
 x-source: harvest:secondary-market
