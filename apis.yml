@@ -94,6 +94,14 @@ apis:
   - IT Management
   - RMM
   - PSA
+  - Ticketing
+  - Agents
+  - Devices
+  - Alerts
+  tags_raw:
+  - IT Management
+  - RMM
+  - PSA
   - Tickets
   - Agents
   - Devices
