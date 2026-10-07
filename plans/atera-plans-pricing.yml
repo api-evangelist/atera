@@ -1,0 +1,24 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.atera.com/it-department-pricing/
+sources:
+- https://www.atera.com/it-department-pricing/
+- https://www.atera.com/pricing/
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: negotiated
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-10-07'
+published: false
+note: No numeric price is published on the pricing page; Page describes a pay-per-technician model for
+  IT departments and add-ons (Network Discovery '/mo per technician', Work from Home '/mo per end user'),
+  but no numeric prices appear in the visible text; calls to action are 'Contact our sales team' / 'Request
+  a demo'. Mentions a '100% free 30-day trial' but no plan prices.
+plan_count: 0
+plans: []
