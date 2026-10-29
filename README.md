@@ -64,48 +64,112 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Atera Networks Ltd. operates an all-in-one IT management platform combining remote
-monitoring and management (RMM), professional services automation (PSA), helpdesk and
-ticketing, patch management, network discovery, remote access, reporting and billing in
-a single per-technician subscription used by managed service providers and internal IT
-departments. Its AI layer adds Action AI, AI Copilot and Robin (IT Autopilot), plus an
-AI Center that installs Model Context Protocol (MCP) integrations from a catalog or
-registers custom MCP servers.
+Atera Networks Ltd. operates an all-in-one IT management platform that combines remote monitoring and management (RMM), professional services automation (PSA), helpdesk and ticketing, patch management, network discovery, remote access (Splashtop, AnyDesk, TeamViewer, ScreenConnect), reporting, and billing/invoicing in a single per-technician subscription used by managed service providers and internal IT departments. Its AI layer adds Action AI, AI Copilot, and Robin (IT Autopilot), and an AI Center that lets administrators install Model Context Protocol (MCP) integrations from a catalog or register custom MCP servers so Atera's own agents can reach outside systems. Atera is programmable through a versioned REST API at https://app.atera.com/api/v3 covering twelve data domains (agents, alerts, billing, contacts, contracts, customers, custom values, departments, devices, knowledge base, rates, tickets) authenticated with an X-API-KEY token, plus outbound webhooks bound to ticket automation rules. Atera states its API is driven by OpenAPI 3.0, but the interactive reference at https://app.atera.com/apidocs requires an account token before it will render and no specification is published at a public URL.
 
-## API surface
+**Areas:** IT Management · RMM · PSA · Help Desk · Ticketing · Patch Management · Remote Monitoring · Endpoint Management · MSP · Network Discovery · Alerts · Devices
 
-| | |
+## Atera on APIs.io
+
+Everything profiled for Atera is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/atera/](https://apis.io/providers/atera/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [Atera API v3](https://apis.io/apis/atera/atera-api-v3/) — Atera's REST API. Twelve data domains — Agents, Alerts, Billing, Contacts, Contracts, Customers, CustomValues, Departments, Devices, KnowledgeBase, Rates…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Atera Webhooks](https://apis.io/asyncapis/atera/atera-webhooks/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Atera Authentication](https://apis.io/security/atera/atera-authentication/)
+- [Atera Domain Security](https://apis.io/security/atera/atera-domain-security/)
+- [Atera Trust Center](https://apis.io/security/atera/atera-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Atera Plans Pricing](https://apis.io/plans/atera/atera-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.atera.com/)
+- [Documentation](https://support.atera.com/hc/en-us/articles/219083397-Using-the-Atera-API)
+- [Getting started](https://support.atera.com/hc/en-us/articles/360019612194-Getting-started)
+- [API reference](https://app.atera.com/apidocs)
+- [Pricing](https://www.atera.com/pricing/)
+- [Sign up](https://app.atera.com/)
+- [Support](https://support.atera.com/hc/en-us)
+- [Changelog](https://support.atera.com/hc/en-us/sections/201896227-Release-Notes)
+- [Blog](https://www.atera.com/blog/)
+- [Compliance](https://trust.atera.com/)
+- [Trust centre](https://trust.atera.com/)
+- [Terms of service](https://www.atera.com/terms-of-use/)
+- [Privacy policy](https://www.atera.com/privacy/)
+- [Status](https://status.atera.com)
+
+## API Evangelist rating
+
+**Kin Score 44.2** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| REST API | `https://app.atera.com/api/v3` |
-| Reference | <https://app.atera.com/apidocs> — **HTTP 401, empty body, to any unauthenticated client** |
-| Docs | <https://support.atera.com/hc/en-us/articles/219083397-Using-the-Atera-API> |
-| Auth | Account token in the `X-API-KEY` header; per-domain Read/Write/Delete permissions, IP allowlist, expiry (max 1 year) |
-| Data domains | Agents, Alerts, Billing, Contacts, Contracts, Customers, CustomValues, Departments, Devices, KnowledgeBase, Rates, Tickets |
-| Events | Webhooks on three ticket triggers only (Enterprise / Superpower tiers) |
-| Status | <https://status.atera.com> — "API Service" is a first-class component |
-| Trust | <https://trust.atera.com/> (Vanta) |
+| Discoverability | 73.2 |
+| Contract quality | 39.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 39.5 |
+| Developer ergonomics | 48.8 |
+| Access clarity | 44.7 |
 
-## What this profile found
+**Agent readiness 19.8** — agent-aware
 
-Atera states in its own API FAQ that "Atera employs OpenAPI 3.0 to drive its API" — but
-that document is served only to an authenticated tenant. Contract discovery was run
-against every host (`app.atera.com`, `www.atera.com`, `api.atera.com`,
-`developers.atera.com`) across `/openapi.json`, `/swagger/docs/v{1,2,3}`,
-`/swagger/v1/swagger.json`, `/api-docs`, `/.well-known/*` and `/llms.txt`. Nothing
-anonymously readable came back: 404s, 401s with empty bodies, and three zero-byte
-soft-200s under `/swagger/` that are the ASP.NET catch-all, not a specification.
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
 
-The human documentation is good and public. The machine-readable contract is not
-published at all. That gap — a real OpenAPI 3.0 that exists but never leaves the tenant
-login — is the single highest-value thing Atera could change.
+**Regulatory alignment 22.7** — Horizontal (data, software, accessibility, platform)
 
-Also recorded: no first-party SDK in any registry (Atera's own docs send readers to the
-community PowerShell module `PSAtera`), no idempotency contract, no documented rate
-limit or 429 semantics, empty-bodied 4xx responses, no error registry, no
-`/.well-known/` documents, no A2A agent card, and no MCP server (Atera consumes MCP, it
-does not publish one). `www.atera.com` answers every automated request — including
-`/robots.txt` — with a Cloudflare 403.
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/atera/](https://apis.io/providers/atera/).
 
-Artifacts in this repo: `authentication/`, `conventions/`, `errors/`, `lifecycle/`,
-`changelog/`, `asyncapi/` (webhook catalog), `conformance/`, `packages/`, `security/`,
-`well-known/`, `llms/`.
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Atera: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/atera/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
